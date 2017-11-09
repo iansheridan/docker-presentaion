@@ -24,7 +24,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <body>
     <div class="reveal">
       <div class="slides">
-        <section data-markdown>
+        <section data-markdown id="begining">
           # Docker in Automation
         </section>
         <section data-markdown>
@@ -56,7 +56,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
         <section data-markdown>
           1. This is accomplished by creating a `Dockerfile`.
           2. Creating an `image` with said _dockerfile_.
-          3. Then instaniating a `container` with the _image_.
+          3. Then instantiating a `container` with the _image_.
         </section>
         <section data-markdown>
           # Dockerfile
@@ -94,6 +94,41 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
         <section data-markdown>
           A container is an instantiated docker image. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
         </section>
+        <section data-markdown>
+          # How do we use Docker?
+        </section>
+        <section data-markdown>
+          We integrate Docker into the automation that supports unit testing and deployment.
+        </section>
+        <section data-markdown>
+          But what is Automation?
+        </section>
+        <section>
+          <p>It is comprized of the following goals:</p>
+          <ul>
+            <li class="fragment">Building the app.</li>
+            <li class="fragment">Building the docker image.</li>
+            <li class="fragment">
+              Placing the created docker image in a location that is accesable by your orchestration system. <br />
+              <ul>
+                <li>Kubernetes</li>
+                <li>Mesos</li>
+                <li>Rancher</li>
+                <li>AWS, Elastic Container Service</li>
+                <li>AWS, Elastic Beanstalk</li>
+              </ul>
+            </li>
+            <li class="fragment">Testing the instantiated continer.</li>
+          </ul>
+        </section>
+        <section data-markdown>
+          ## What are the tools that I use to do all this?
+        </section>
+        <section>
+          <ul>
+            <li>Jenkins, </li>
+          </ul>
+        </section>
         <section id="end"></section>
       </div>
     </div>
@@ -103,6 +138,10 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
 
     <script>
 Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  center: true,
   transition: 'concave',
   dependencies: [
   { src: 'plugin/markdown/marked.js' },
