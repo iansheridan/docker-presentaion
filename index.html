@@ -24,6 +24,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
   <body>
     <div class="reveal">
       <div class="slides">
+        <section id="blank-start"></section>
         <section data-markdown id="begining">
           # Docker in Automation
         </section>
@@ -37,7 +38,7 @@ document.getElementsByTagName( 'head' )[0].appendChild( link );
           <ul>
             <li class="fragment">Devop</li>
             <li class="fragment">Automation Specialist</li>
-            <li class="fragment">Docker and K8S advicate</li>
+            <li class="fragment">Docker and K8S advocate</li>
           </ul>
         </section>
         <section data-markdown>
@@ -104,12 +105,12 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
           But what is Automation?
         </section>
         <section>
-          <p>It is comprized of the following goals:</p>
+          <p>It is comprised of the following goals:</p>
           <ul>
             <li class="fragment">Building the app.</li>
             <li class="fragment">Building the docker image.</li>
             <li class="fragment">
-              Placing the created docker image in a location that is accesable by your orchestration system. <br />
+              Placing the created docker image in a location that is accessible by your orchestration system. <br />
               <ul>
                 <li>Kubernetes</li>
                 <li>Mesos</li>
@@ -118,7 +119,7 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
                 <li>AWS, Elastic Beanstalk</li>
               </ul>
             </li>
-            <li class="fragment">Testing the instantiated continer.</li>
+            <li class="fragment">Testing the instantiated container.</li>
           </ul>
         </section>
         <section data-markdown>
@@ -143,12 +144,21 @@ CMD ["/usr/bin/node", "/var/www/app.js"]
           ## How do I use these tools?
         </section>
         <section>
-          I have the Job in my CI tool execute scripts in thecode base that is being built.
+          I have the Job in my CI tool execute scripts in the code base that is being built.
         </section>
         <section>
           I usually do this via Make.
         </section>
-        <section id="end"></section>
+        <section id="end" data-markdown>
+          <script type="text/template">
+            My contact info.
+
+            Ian Sheridan <br />
+            Technologist : Solftware Engineer : Devop<br />
+            [https://www.savagvines.com](https://www.savagvines.com) <br />
+            [mailto:ian.sheridan@gmail.com](ian.sheridan@gmail.com)
+          </script>
+        </section>
       </div>
     </div>
 
@@ -165,8 +175,8 @@ Reveal.initialize({
   dependencies: [
   { src: 'plugin/markdown/marked.js' },
   { src: 'plugin/markdown/markdown.js' },
-  { src: 'plugin/notes/notes.js', async: true },
-  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+  { src: 'plugin/notes/notes.js', async: true }
   ]
 });
     </script>
