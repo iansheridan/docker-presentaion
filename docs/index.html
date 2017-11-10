@@ -1,0 +1,184 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <title>Docker in Automation, a presentation</title>
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/night.css">
+
+    <!-- Theme used for syntax highlighting of code -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+var link = document.createElement( 'link' );
+link.rel = 'stylesheet';
+link.type = 'text/css';
+link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section id="blank-start"></section>
+        <section data-markdown id="begining">
+          # Docker in Automation
+        </section>
+        <section data-markdown>
+          ## Real world use of docker
+
+          ### by Ian Sheridan
+        </section>
+        <section>
+          <h3>Who is Ian?</h3>
+          <ul>
+            <li class="fragment">Devop</li>
+            <li class="fragment">Automation Specialist</li>
+            <li class="fragment">Docker and K8S advocate</li>
+          </ul>
+        </section>
+        <section data-markdown>
+          # Intro to Docker
+        </section>
+        <section data-markdown>
+          ## What is it?
+        </section>
+        <section data-markdown>
+          <script type="text/template">
+            It is a virtual space on a server <br />
+            that can instantiate an app <br />
+            with *all* it's requirements.
+          </script>
+        </section>
+        <section data-markdown>
+          1. This is accomplished by creating a `Dockerfile`.
+          2. Creating an `image` with said _dockerfile_.
+          3. Then instantiating a `container` with the _image_.
+        </section>
+        <section data-markdown>
+          # Dockerfile
+        </section>
+        <section>
+          here is a Dockerfile:
+          <pre><code class="hljs" data-trim contenteditable>
+FROM ubuntu
+MAINTAINER John Smith
+
+RUN apt-get install -y software-properties-common python
+RUN add-apt-repository ppa:chris-lea/node.js
+RUN echo "deb http://us.archive.ubuntu.com/ubuntu/ precise universe" >> /etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y nodejs
+#RUN apt-get install -y nodejs=0.6.12~dfsg1-1ubuntu1
+RUN mkdir /var/www
+
+ADD app.js /var/www/app.js
+
+CMD ["/usr/bin/node", "/var/www/app.js"]
+          </code></pre>
+        </section>
+        <section data-markdown>
+          # Docker Image
+        </section>
+        <section data-markdown>
+          An image is a lightweight, stand-alone, executable package that includes everything needed to run a piece of software, including the code, a runtime, libraries, environment variables, and config files.
+
+          -- Docker Docs
+        </section>
+        <section data-markdown>
+          # Docker Container
+        </section>
+        <section data-markdown>
+          A container is an instantiated docker image. It runs completely isolated from the host environment by default, only accessing host files and ports if configured to do so.
+        </section>
+        <section data-markdown>
+          # How do we use Docker?
+        </section>
+        <section data-markdown>
+          We integrate Docker into the automation that supports unit testing and deployment.
+        </section>
+        <section data-markdown>
+          But what is Automation?
+        </section>
+        <section>
+          <p>It is comprised of the following goals:</p>
+          <ul>
+            <li class="fragment">Building the app.</li>
+            <li class="fragment">Building the docker image.</li>
+            <li class="fragment">
+              Placing the created docker image in a location that is accessible by your orchestration system. <br />
+              <ul>
+                <li>Kubernetes</li>
+                <li>Mesos</li>
+                <li>Rancher</li>
+                <li>AWS, Elastic Container Service</li>
+                <li>AWS, Elastic Beanstalk</li>
+              </ul>
+            </li>
+            <li class="fragment">Testing the instantiated container.</li>
+          </ul>
+        </section>
+        <section data-markdown>
+          ## What are the tools that I use to do this?
+        </section>
+        <section>
+          <ul>
+            <li class="fragment">Jenkins, Travis, CircleCI, etc., etc.</li>
+            <li class="fragment">bash, ruby, python</li>
+            <li class="fragment">orchestration cli tools</li>
+          </ul>
+        </section>
+        <section>
+          <p>My perfered tools are the following:</p>
+          <ul>
+            <li class="fragment">Jenkins</li>
+            <li class="fragment">Bash</li>
+            <li class="fragment">Ruby</li>
+          </ul>
+        </section>
+        <section data-markdown>
+          ## How do I use these tools?
+        </section>
+        <section>
+          I have the Job in my CI tool execute scripts in the code base that is being built.
+        </section>
+        <section>
+          I usually do this via Make.
+        </section>
+        <section id="end" data-markdown>
+          <script type="text/template">
+            My contact info.
+
+            Ian Sheridan <br />
+            Technologist : Solftware Engineer : Devop<br />
+            [https://www.savagvines.com](https://www.savagvines.com) <br />
+            [mailto:ian.sheridan@gmail.com](ian.sheridan@gmail.com)
+          </script>
+        </section>
+      </div>
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
+
+    <script>
+Reveal.initialize({
+  controls: true,
+  progress: true,
+  history: true,
+  center: true,
+  transition: 'concave',
+  dependencies: [
+  { src: 'plugin/markdown/marked.js' },
+  { src: 'plugin/markdown/markdown.js' },
+  { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+  { src: 'plugin/notes/notes.js', async: true }
+  ]
+});
+    </script>
+  </body>
+</html>
